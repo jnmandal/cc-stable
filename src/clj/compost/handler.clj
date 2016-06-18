@@ -1,5 +1,5 @@
 (ns compost.handler
-  (:require [compojure.core :refer [GET defroutes]]
+  (:require [compojure.core :refer [GET POST defroutes]]
             [compojure.route :refer [not-found resources]]
             [hiccup.page :refer [include-js include-css html5]]
             [compost.middleware :refer [wrap-middleware]]
@@ -19,7 +19,7 @@
            :content "width=device-width, initial-scale=1"}]
    (include-css (if (env :dev) "/css/site.css" "/css/site.min.css"))])
 
-(def loading-page
+(def index-page
   (html5
     (head)
     [:body {:class "body-container"}
@@ -28,10 +28,31 @@
 
 
 (defroutes routes
-  (GET "/" [] loading-page)
-  (GET "/about" [] loading-page)
-  
+  (GET "/" [] index-page)
+
+  (GET "/users"
+       [] "goo")
+
+  (POST "/users"
+        params params)
+
+  (GET "/messages"
+       params params)
+
+  (POST "/messages"
+        params params)
+
+  (GET "/questionnaires"
+       params params)
+
+  (POST "/questionnaires"
+        params params)
+
+  (POST "/tokens"
+        params)
+
   (resources "/")
-  (not-found "Not Found"))
+
+  (not-found "404"))
 
 (def app (wrap-middleware #'routes))

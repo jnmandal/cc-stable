@@ -8,7 +8,7 @@
 ;; Views
 
 (defn home-page []
-  [:div [:h2 "Welcome to compost"]
+  [:div [:h2 "Compost Crossing"]
    [:div [:a {:href "/about"} "go to about page"]]])
 
 (defn about-page []
