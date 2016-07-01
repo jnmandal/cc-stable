@@ -9,6 +9,7 @@
                  [compojure "1.5.0"]
                  [hiccup "1.0.5"]
                  [korma "0.4.0"]
+                 [clj-time "0.12.0"]
                  [org.postgresql/postgresql "9.2-1002-jdbc4"]
                  [yogthos/config "0.8"]
                  [org.clojure/clojurescript "1.9.36"
