@@ -3,7 +3,9 @@
             [compojure.route :refer [not-found resources]]
             [hiccup.page :refer [include-js include-css html5]]
             [compost.middleware :refer [wrap-middleware]]
-            [config.core :refer [env]]))
+            [config.core :refer [env]]
+            [compost.users :as users]
+            [clojure.data.json :as json]))
 
 (def mount-target
   [:div#app
@@ -28,13 +30,16 @@
 
 
 (defroutes routes
-  (GET "/" [] index-page)
+  (GET "/" 
+       [] index-page)
 
   (GET "/users"
        [] "goo")
 
   (POST "/users"
-        params params)
+        request (users/new
+                 (json/read-str (slurp (:body request)))
+                 :key-fn keyword))
 
   (GET "/messages"
        params params)
