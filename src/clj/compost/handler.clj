@@ -38,8 +38,8 @@
 
   (POST "/users"
         request (users/new
-                 (json/read-str (slurp (:body request)))
-                 :key-fn keyword))
+                 (json/read-str (slurp (:body request))
+                 :key-fn keyword)))
 
   (GET "/messages"
        params params)
